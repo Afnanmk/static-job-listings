@@ -5,6 +5,7 @@ const clear = document.querySelector("#clear")
 
 // Global Variables
 let filterAdded = {}
+let target = ''
 
 
 // fetch is used to get the data from data.json file dynamically in html.
@@ -62,7 +63,7 @@ let filterAdded = {}
 
 const filterTablets = document.querySelectorAll('.filterBtns')
 const jobCards = document.querySelectorAll('.card')
-let target = ''
+
 
 
 
@@ -74,24 +75,25 @@ function hideFilterBar() {
   filterBar.style.display = "none"
 }
 
+
 joblistContainer.addEventListener('click', (e) => {
   // let tarrget = e.target.closest('BUTTON').textContent
   
    if(e.target.tagName === 'BUTTON') {
     
       target = e.target.textContent
+
       if(!filterAdded[target]) {
         filterAdded[target] = true
-        console.log(filterAdded)
+        
 
-     let tagHtml = `<div class="flex" id="tag1">
+     let filterBtnHtml = `<div class="flex" id="filterBtn">
      <div class="bg-filterBg py-1 px-3 rounded-l-md">${target}</div>
-     <button class="bg-primary px-3 rounded-r-md transition duration-200 ease-in hover:bg-dark"><img src="images/icon-remove.svg" alt="Remove Icon"></button>
+     <button class="removeIcon bg-primary px-3 rounded-r-md transition duration-200 ease-in hover:bg-dark"><img src="images/icon-remove.svg" class="" alt="Remove Icon"></button>
    </div>`
-
-     filterBar.querySelector('#filterTags').insertAdjacentHTML('beforeend', tagHtml)
+     filterBar.querySelector('#filterTags').insertAdjacentHTML('beforeend', filterBtnHtml)
     showFilterBar()
-   
+    
      
     const filterContents = Object.keys(filterAdded)
     jobCards.forEach(card => {
@@ -100,17 +102,43 @@ joblistContainer.addEventListener('click', (e) => {
       card.style.display = shouldShowCard ? 'flex' : 'none'
     })
     
-
       }
    }
     
-    
-})
-     
+   
+   const removeIcon = document.querySelectorAll(".removeIcon")
+   
+   for(let i = 0; i < removeIcon.length; i++) {
+    removeIcon[i].addEventListener('click', (e) => {
+      
+      const filterTablet = e.target.closest('BUTTON').parentElement
+      
+      const removedfilterContent = filterTablet.textContent.trim().replace('x', '');
+      console.log(removedfilterContent)
+      delete filterAdded[removedfilterContent];
+      // console.log(filterTablet)
+      filterTablet.remove()
+      filterBar.textContent.trim() === 'Clear' ? clearAllFilters() : null
+    })
+   }
+ 
+   function clearAllFilters() {
+    const clearElements = document.querySelectorAll('#filterBar > :not(#clear)')
+    clearElements.forEach(el => el.remove())
+    filterAdded = {}
+    hideFilterBar()
+    jobCards.forEach(card => card.style.display = 'flex')
+  }
 
-
+  clear.addEventListener('click', (e) => {
+    e.preventDefault()
+    clearAllFilters()
   })
+})
+  
 
+
+   })
 
 
 
