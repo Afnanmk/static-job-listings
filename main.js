@@ -61,7 +61,7 @@ let target = ''
         joblistContainer.insertAdjacentHTML('beforeend', cardHtml)
       })
 
-const filterTablets = document.querySelectorAll('.filterBtns')
+const filterBtns = document.querySelectorAll('.filterBtns')
 const jobCards = document.querySelectorAll('.card')
 
 
@@ -75,69 +75,74 @@ function hideFilterBar() {
   filterBar.style.display = "none"
 }
 
+function showAllCards() {
+  jobCards.forEach(card => card.style.display = 'flex')
+}
 
-joblistContainer.addEventListener('click', (e) => {
-  // let tarrget = e.target.closest('BUTTON').textContent
-  
-   if(e.target.tagName === 'BUTTON') {
-    
-      target = e.target.textContent
-
-      if(!filterAdded[target]) {
-        filterAdded[target] = true
-        
-
-     let filterBtnHtml = `<div class="flex" id="filterBtn">
-     <div class="bg-filterBg py-1 px-3 rounded-l-md">${target}</div>
-     <button class="removeIcon bg-primary px-3 rounded-r-md transition duration-200 ease-in hover:bg-dark"><img src="images/icon-remove.svg" class="" alt="Remove Icon"></button>
-   </div>`
-     filterBar.querySelector('#filterTags').insertAdjacentHTML('beforeend', filterBtnHtml)
-    showFilterBar()
-    
+filterBtns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+     showFilterBar()
      
-    const filterContents = Object.keys(filterAdded)
+     target = e.target.textContent
+     if(!filterAdded[target]) {
+      filterAdded[target] = true
+      addFilterCapsule(target)
+      filterCards()
+     }
+     
+})
+})
+
+function addFilterCapsule(target) {
+
+  let filterBtnHtml = `<div class="flex" id="filterBtn">
+  <div class="bg-filterBg py-1 px-3 rounded-l-md">${target}</div>
+  <button class="removeIcon bg-primary px-3 rounded-r-md transition duration-200 ease-in hover:bg-dark"><img src="images/icon-remove.svg" class="" alt="Remove Icon"></button>
+</div>`
+
+  filterBar.insertAdjacentHTML('beforeend', filterBtnHtml)
+  const removeBtn = document.querySelectorAll('.removeIcon')
+  removeFilterCapsule(removeBtn)
+}
+
+function filterCards() {
+  const filterContents = Object.keys(filterAdded)
     jobCards.forEach(card => {
       const cardContent = card.textContent
       const shouldShowCard = filterContents.every((filterContent) => cardContent.includes(filterContent))
       card.style.display = shouldShowCard ? 'flex' : 'none'
     })
-    
-      }
-   }
-    
-   
-   const removeIcon = document.querySelectorAll(".removeIcon")
-   
-   for(let i = 0; i < removeIcon.length; i++) {
-    removeIcon[i].addEventListener('click', (e) => {
-      
+}
+
+
+
+
+function removeFilterCapsule(removeBtn) {
+  removeBtn.forEach(b => {
+    b.addEventListener('click', (e) => {
       const filterTablet = e.target.closest('BUTTON').parentElement
-      
-      const removedfilterContent = filterTablet.textContent.trim().replace('x', '');
-      console.log(removedfilterContent)
-      delete filterAdded[removedfilterContent];
-      // console.log(filterTablet)
+      const removedFilterTarget = filterTablet.textContent.trim().replace('x', '')
+      delete filterAdded[removedFilterTarget]
       filterTablet.remove()
       filterBar.textContent.trim() === 'Clear' ? clearAllFilters() : null
+      filterCards()
     })
-   }
- 
-   function clearAllFilters() {
-    const clearElements = document.querySelectorAll('#filterBar > :not(#clear)')
-    clearElements.forEach(el => el.remove())
-    filterAdded = {}
-    hideFilterBar()
-    jobCards.forEach(card => card.style.display = 'flex')
-  }
-
-  clear.addEventListener('click', (e) => {
-    e.preventDefault()
-    clearAllFilters()
   })
+}
+
+function clearAllFilters() {
+  const clearElements = document.querySelectorAll('#filterBar > :not(#clear)')
+  clearElements.forEach(el => el.remove())
+  filterAdded = {}
+  hideFilterBar()
+  showAllCards()
+}
+
+clear.addEventListener('click', (e) => {
+   e.preventDefault()
+   clearAllFilters()
 })
-  
-
-
+ 
    })
 
 
