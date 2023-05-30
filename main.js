@@ -100,7 +100,7 @@ function addFilterCapsule(target) {
   <button class="removeIcon bg-primary px-3 rounded-r-md transition duration-200 ease-in hover:bg-dark"><img src="images/icon-remove.svg" class="" alt="Remove Icon"></button>
 </div>`
 
-  filterBar.insertAdjacentHTML('beforeend', filterBtnHtml)
+  filterBar.querySelector('#filterTags').insertAdjacentHTML('beforeend', filterBtnHtml)
   const removeBtn = document.querySelectorAll('.removeIcon')
   removeFilterCapsule(removeBtn)
 }
