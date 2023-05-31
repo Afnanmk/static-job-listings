@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/Afnanmk/static-job-listings]
+- Solution URL: https://github.com/Afnanmk/static-job-listings
 - Live Site URL: [https://6477b83f165cac179d5ed03a--graceful-pithivier-a3a325.netlify.app/]
 
 ## My process
