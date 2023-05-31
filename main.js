@@ -131,7 +131,7 @@ function removeFilterCapsule(removeBtn) {
 }
 
 function clearAllFilters() {
-  const clearElements = document.querySelectorAll('#filterBar > :not(#clear)')
+  const clearElements = document.querySelectorAll('#filterBtn')
   clearElements.forEach(el => el.remove())
   filterAdded = {}
   hideFilterBar()
