@@ -47,7 +47,7 @@
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
       .attribution {
-        font-size: 11px;
+        font-size: 14px;
         text-align: center;
       }
       .attribution a {
@@ -60,38 +60,58 @@
       .tags > button:last-child {
         margin-right: 0;
       }
+      /* RESPONSIVE SECTION */
+      @media only screen and (max-width:767px) {
+        .tablet-padding {
+          padding-top: 8rem !important;
+        }
+      }
+      @media only screen and (max-width:596px) {
+        .mobile-padding {
+          padding-top: 10rem !important;
+        }
+      }
+      @media only screen and (max-width:438px) {
+        #filterBar {
+           position: static;
+           transform: translate(0);
+           margin-top: -3rem;
+        }
+        #jobList {
+          padding-top: 4rem !important;
+        }
+      }
     </style>
   </head>
   <body class="font-display bg-backgroundColor text-lg">
+   
     <header class="bg-hero-pattern bg-no-repeat h-[120px] bg-cover bg-primary mx-auto"></header>
-    <main class="h-10 container w-[85%] max-w-[1440px] mx-auto relative">
 
+    <main class="h-10 container w-[85%] max-w-[1440px] mx-auto relative">
+      
+      <!-- FilternBar -->
       <div id="filterBar" class="hidden flex justify-between font-bold rounded-md text-primary tracking-wide bg-white absolute w-full left-[50%] -translate-x-[50%] -translate-y-[50%] py-6 px-8 shadow-lg shadow-primary/20">
           <div class="flex flex-wrap gap-5" id="filterTags">
-        
          </div> 
         <button id="clear" class="hover:underline">Clear</button>
       </div>
 
-
+  
       <!-- JOB LIST STARTS -->
-      <div id="jobList" class="pt-20 pb-24">
-       
+      <div id="jobList" class="pt-20 pb-24"></div>
+
+      <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="https://afnanmk.github.io/portfolio-production/" target="_blank">Afnan Malik</a>.
       </div>
     </main>
      
-
-
-
-
-
-    <!-- <div class="attribution">
-      Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-        >Frontend Mentor</a
-      >. Coded by <a href="#">Your Name Here</a>.
-    </div> -->
+    
     <script src="main.js"></script>
+   
+  
   </body>
 
 

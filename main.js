@@ -9,8 +9,6 @@ let target = ''
 
 
 // fetch is used to get the data from data.json file dynamically in html.
-
-
   fetch('./data.json')
   .then(res => {
      if(!res.ok) {
@@ -26,8 +24,7 @@ let target = ''
           let tool = data.tools.map(tool => `<button class="filterBtns tracking-wide bg-filterBg py-1 px-3 rounded-md transition duration-200 ease-in hover:bg-primary hover:text-white">${tool}</button>`).join(' ')
           
          
-          // Add job list in the job list container
-
+          // Add job cards in the job list container
           let cardHtml = `<div class="card max-[767px]:flex-col max-[767px]:items-start max-[767px]:relative max-[767px]:mb-14 flex justify-between items-center rounded-md bg-white shadow-lg shadow-primary/20 p-7 max-[430px]:p-5 mb-5 ${data.featured ? "border-l-8" : ''} border-primary tracking-wide font-bold">
           <div class="flex gap-5 items-center pr-8">
           <div class="max-[767px]:absolute max-[767px]:-top-8"><img class="max-w-none max-[767px]:w-[75%]" src="${data.logo}" alt="Company Logo"></div>
@@ -61,28 +58,35 @@ let target = ''
         joblistContainer.insertAdjacentHTML('beforeend', cardHtml)
       })
 
+
+
+//************* Functionality for filtering by tags **************/
 const filterBtns = document.querySelectorAll('.filterBtns')
 const jobCards = document.querySelectorAll('.card')
 
 
-
-
 function showFilterBar() {
    filterBar.style.display = "flex"
+   joblistContainer.classList.add('tablet-padding')
+   joblistContainer.classList.add('mobile-padding')
 }
 
 function hideFilterBar() {
   filterBar.style.display = "none"
+  joblistContainer.classList.remove('tablet-padding')
+  joblistContainer.classList.remove('mobile-padding')
 }
 
 function showAllCards() {
   jobCards.forEach(card => card.style.display = 'flex')
 }
 
+
 filterBtns.forEach((btn) => {
   btn.addEventListener('click', (e) => {
+    // Show selected filter Buttons to the filterbar
      showFilterBar()
-     
+    
      target = e.target.textContent
      if(!filterAdded[target]) {
       filterAdded[target] = true
@@ -93,6 +97,7 @@ filterBtns.forEach((btn) => {
 })
 })
 
+// Add selected filter buttons in the filter bar
 function addFilterCapsule(target) {
 
   let filterBtnHtml = `<div class="flex" id="filterBtn">
@@ -105,6 +110,8 @@ function addFilterCapsule(target) {
   removeFilterCapsule(removeBtn)
 }
 
+
+// filter the cards by tags
 function filterCards() {
   const filterContents = Object.keys(filterAdded)
     jobCards.forEach(card => {
@@ -113,7 +120,6 @@ function filterCards() {
       card.style.display = shouldShowCard ? 'flex' : 'none'
     })
 }
-
 
 
 
@@ -130,6 +136,7 @@ function removeFilterCapsule(removeBtn) {
   })
 }
 
+
 function clearAllFilters() {
   const clearElements = document.querySelectorAll('#filterBtn')
   clearElements.forEach(el => el.remove())
@@ -143,11 +150,11 @@ clear.addEventListener('click', (e) => {
    clearAllFilters()
 })
  
+
    })
 
 
 
 
-// functionality for filtering by tags
 
 
