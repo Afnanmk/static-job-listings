@@ -46,22 +46,16 @@ Users should be able to:
 - [https://tailwindcss.com/] - css framework
 
 
-### Useful resources
-
-- [https://www.frontendmentor.io/profile/Victor353535] - His solution has helped me alot in this project. I really appreciate his work.
-
-
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [Afnan Malik](https://afnanmk.github.io/portfolio-production/)
+- Frontend Mentor - [@Afnanmk](https://www.frontendmentor.io/profile/Afnanmk)
+- Twitter - [@afnanmk22](https://twitter.com/afnanmk22)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+- [https://github.com/volkanguneri] [https://www.frontendmentor.io/profile/Victor353535] - His solution has helped me alot in this project. I got some ideas from his solution which helped me to complete the challenge successfully. I really appreciate his work.
 
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+
